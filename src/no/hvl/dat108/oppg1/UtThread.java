@@ -1,4 +1,4 @@
-package oppg1;
+package no.hvl.dat108.oppg1;
 
 public class UtThread extends Thread {
 
