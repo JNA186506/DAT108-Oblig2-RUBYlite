@@ -1,6 +1,5 @@
 package no.hvl.dat108.test.oppg2;
 
-import no.hvl.dat108.oppg2.Hamburger;
 import no.hvl.dat108.oppg2.HamburgerBrett;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
