@@ -49,10 +49,15 @@ public class HamburgerBrett<T> extends Node<T> {
     public void print() {
        Node temp = front;
 
+       if (temp == null) {
+           System.out.println("[]");
+       }
+        System.out.println("[ ");
        while (temp != null) {
            System.out.print(temp.data + " ");
            temp = temp.next;
        }
+        System.out.println(" ]");
     }
 
 }
