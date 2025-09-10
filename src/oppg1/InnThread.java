@@ -2,7 +2,7 @@ package oppg1;
 
 import javax.swing.*;
 
-public class InputThread extends Thread {
+public class InnThread extends Thread {
 
     @Override
     public void run() {

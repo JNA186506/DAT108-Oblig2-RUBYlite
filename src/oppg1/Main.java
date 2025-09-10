@@ -8,19 +8,10 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        Thread t1 = new Thread(() ->  {
-            while (fortsett) {
-                try {
-                    System.out.println("Hallo verden!");
-                    sleep(3000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
+        UtThread t1 = new UtThread();
         t1.start();
 
-        InputThread t2 = new InputThread();
+        InnThread t2 = new InnThread();
         t2.start();
 
         t1.join();
