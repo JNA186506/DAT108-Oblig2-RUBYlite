@@ -31,25 +31,19 @@ public class Kokk extends Thread {
 		
 		while(!done) {
 			
-			if(brett.addHamburger()) {
+			try {
 				
-				System.out.println(namn + " la til hamburger {" + brett.getBurgerNumber() + "}");
-				
-				try {
-					
-					Thread.sleep((2 + (int) Math.floor(Math.random() * 5)) * 1000);
-					
-				}
-				
-				catch (InterruptedException e) {
-					
-					e.printStackTrace();
-					
-				}
+				Thread.sleep((2 + (int) Math.floor(Math.random() * 5)) * 1000);
 				
 			}
 			
-			else System.out.println("Brettet er fult");
+			catch (InterruptedException e) {
+				
+				e.printStackTrace();
+				
+			}
+			
+			brett.addHamburger(this);
 			
 		}
 		

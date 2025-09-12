@@ -7,12 +7,14 @@ public class HamburgerBrett {
 	private ArrayList<Hamburger> hamburgere;
 	private int capacity;
 	private int burgerNumber;
+	private Object lock;
 	
 	public HamburgerBrett(int capacity) {
 		
 		this.capacity = capacity;
 		hamburgere = new ArrayList<>();
 		burgerNumber = 0;
+		lock = new Object();
 		
 	}
 	
@@ -22,28 +24,67 @@ public class HamburgerBrett {
 		
 	}
 	
-	public boolean addHamburger() {
+	public void addHamburger(Kokk k) {
 		
-		if(hamburgere.size() < capacity) {
+		synchronized(lock) {
 			
-			hamburgere.add(new Hamburger(++burgerNumber));
-			return true;
+			if(hamburgere.size() >= capacity) {
+				
+				System.out.println("Brettet er fullt!");
+				
+				try {
+					
+					lock.wait();
+					
+				}
+				
+				catch (InterruptedException e) {}
+				
+			}
 			
-		}
-		
-		else {
-			
-			System.out.println("Brettet er fullt");
-			return false;
+			else {
+				
+				Hamburger h = new Hamburger(++burgerNumber);
+				
+				System.out.println("Laget av " + k.getNamn() + ": " + h.getNummer());
+				
+				hamburgere.add(h);
+				
+				lock.notify();
+				
+			}
 			
 		}
 		
 	}
 	
-	public Hamburger removeHamburger() {
+	public void removeHamburger(Servitor s) {
 		
-		if(hamburgere.isEmpty()) return null;
-		else return hamburgere.remove(0);
+		synchronized(lock) {
+			
+			if(hamburgere.isEmpty()) {
+				
+				System.out.println("Brettet er tomt!");
+				
+				try {
+					
+					lock.wait();
+					
+				}
+				
+				catch (InterruptedException e) {}
+				
+			}
+			
+			else {
+				
+				System.out.println("Servert av " + s.getNamn() + ": " + hamburgere.remove(0).getNummer());
+				
+				lock.notify();
+				
+			}
+			
+		}
 		
 	}
 	
