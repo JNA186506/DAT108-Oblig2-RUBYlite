@@ -2,19 +2,17 @@ package no.hvl.dat108.oppg2;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         final String[] kokker = {"Anne", "Erik", "Knut"};
         final String[] servitorer = {"Mia", "Per"};
 
-        HamburgerBrett<Hamburger> brett = new HamburgerBrett<>();
+        HamburgerBrett brett = new HamburgerBrett(4);
 
-        for (String navn : kokker) {
-            new Kokk(brett, navn).start();
-        }
+        Kokk anne = new Kokk(brett, "anne");
+        Servitor per = new Servitor(brett, "per");
 
-        for (String navn : servitorer) {
-            new Servitor(brett, navn).start();
-        }
+        anne.start();
+        per.start();
 
     }
 }

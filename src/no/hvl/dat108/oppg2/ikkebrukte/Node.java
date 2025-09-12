@@ -1,4 +1,4 @@
-package no.hvl.dat108.oppg2;
+package no.hvl.dat108.oppg2.ikkebrukte;
 
 public class Node<T> {
     T data;

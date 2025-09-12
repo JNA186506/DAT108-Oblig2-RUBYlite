@@ -1,63 +1,44 @@
 package no.hvl.dat108.oppg2;
 
-public class HamburgerBrett<T> extends Node<T> {
+import java.util.ArrayList;
+import java.util.List;
 
-   private Node<T> front, tail;
-   private int lengde;
+public class HamburgerBrett {
 
-   public HamburgerBrett() {
-       this.front = this.tail = null;
-       this.lengde = 0;
-   }
+    private List<Hamburger> brett;
+    private int capacity;
+    private int burgerNummer;
 
-   public int getLengde() {
-       return this.lengde;
-   }
-
-  public void enqueue(T data) {
-       lengde++;
-       Node newNode = new Node(data);
-
-       if (tail == null) {
-           front = tail = newNode;
-       }
-
-       tail.next = newNode;
-       tail = newNode;
-  }
-
-    public T dequeue() {
-
-       if (front.data == null) return null;
-
-       T returnData = front.data;
-       front = front.next;
-
-       if (front.data == null) {
-           tail = null;
-       }
-
-       lengde--;
-
-       return returnData;
+    public HamburgerBrett(int capacity) {
+        this.brett = new ArrayList<Hamburger>();
+        this.capacity = capacity;
+        this.burgerNummer = 0;
     }
 
-    public T peek() {
-       return front.data;
+    public void enqueue(Hamburger burger) {
+        if (brett.size() < capacity) {
+            brett.add(burger);
+            burgerNummer++;
+            return;
+        }
+        System.out.println("Brettet er fullt");
     }
 
-    public void print() {
-       Node temp = front;
-
-       if (temp == null) {
-           System.out.println("[]");
-       }
-        System.out.println("[ ");
-       while (temp != null) {
-           System.out.print(temp.data + " ");
-           temp = temp.next;
-       }
-        System.out.println(" ]");
+    public Hamburger dequeue() {
+        Hamburger burger = brett.getFirst();
+        brett.removeFirst();
+        return burger;
     }
 
+    public Hamburger peek() {
+        return brett.getFirst();
+    }
+
+    public boolean isFull() {
+        return brett.size() == capacity;
+    }
+
+    public boolean isEmpty() {
+        return brett.isEmpty();
+    }
 }

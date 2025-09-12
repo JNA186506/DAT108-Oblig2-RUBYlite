@@ -3,10 +3,11 @@ package no.hvl.dat108.oppg2;
 
 public class Servitor extends Thread {
 
-    private HamburgerBrett<Hamburger> brett;
+    private HamburgerBrett brett;
     private String navn;
+    private Hamburger burger;
 
-    public Servitor(HamburgerBrett<Hamburger> brett, String navn) {
+    public Servitor(HamburgerBrett brett, String navn) {
         this.brett = brett;
         this.navn = navn;
     }
@@ -16,21 +17,18 @@ public class Servitor extends Thread {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
         while (true) {
             synchronized (brett) {
-                while(brett.getLengde() != 0) {
+                while (brett.isEmpty()) {
                     try {
                         brett.wait();
                     } catch (InterruptedException e) {
+
                     }
-
-                    Hamburger hamburger = brett.dequeue();
-                    brett.notifyAll();
-                    System.out.println("Servitor tar av hamburger " + hamburger.nummer());
-                    brett.print();
+                    brett.dequeue();
+                    System.out.println(getNavn() + " plukket opp " + burger.nummer());
                 }
-
             }
         }
     }
