@@ -31,33 +31,19 @@ public class Servitor extends Thread {
 		
 		while(!done) {
 			
-			Hamburger burger = brett.removeHamburger();
-			
-			if(burger != null) {
+			try {
 				
-				System.out.println(namn + " serverte hamburger {" + burger.getNummer() + "}");
-				
-				try {
-					
-					Thread.sleep((2 + (int) Math.floor(Math.random() * 5)) * 1000);
-					
-				}
-				
-				catch (InterruptedException e) {
-					
-					e.printStackTrace();
-					
-				}
+				Thread.sleep((2 + (int) Math.floor(Math.random() * 5)) * 1000);
 				
 			}
 			
-			else {
+			catch (InterruptedException e) {
 				
-				System.out.println("Brettet er tomt");
-				
-				
+				e.printStackTrace();
 				
 			}
+			
+			brett.removeHamburger(this);
 			
 		}
 		

@@ -8,12 +8,16 @@ public class Main {
 		Kokk kokk1 = new Kokk(brett, "Mitch");
 		Kokk kokk2 = new Kokk(brett, "Mitchy");
 		Kokk kokk3 = new Kokk(brett, "Mitchey");
-		Servitor servitor = new Servitor(brett, "Michelle");
+		Servitor servitor1 = new Servitor(brett, "Michelle");
+		Servitor servitor2 = new Servitor(brett, "Michette");
+		Servitor servitor3 = new Servitor(brett, "Michelline");
 		
 		kokk1.start();
 		kokk2.start();
 		kokk3.start();
-		servitor.start();
+		servitor1.start();
+		servitor2.start();
+		servitor3.start();
 		
 	}
 	
