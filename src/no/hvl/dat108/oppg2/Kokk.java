@@ -5,22 +5,9 @@ public class Kokk extends Thread {
     private HamburgerBrett brett;
     private String navn;
 
-    private int antallHamburgere;
-
     public Kokk(HamburgerBrett brett, String navn) {
        this.brett = brett;
        this.navn = navn;
-       antallHamburgere = 0;
-    }
-
-    public Hamburger lagHamburger() {
-        try {
-            sleep(2000);
-            antallHamburgere++;
-        } catch (InterruptedException e) {
-        }
-        return new Hamburger(antallHamburgere);
-
     }
 
     public String getNavn() {
@@ -30,19 +17,12 @@ public class Kokk extends Thread {
     @Override
     public void run() {
         while (true) {
-            synchronized (brett) {
-                Hamburger burger = lagHamburger();
-                while (brett.isFull()) {
-                   try {
-                       brett.wait();
-                   } catch (InterruptedException e) {
-                       throw new RuntimeException(e);
-                   }
-                   brett.enqueue(burger);
-                   brett.notifyAll();
-                }
-                System.out.println("Kokk " + getNavn() + " la på burger " + burger.nummer());
+            try {
+                sleep((long) Math.floor(Math.random() * 5 + 2) * 1000);
+            } catch (InterruptedException e) {
+                System.out.println("Error");
             }
+            brett.addBurger(this);
         }
     }
 }

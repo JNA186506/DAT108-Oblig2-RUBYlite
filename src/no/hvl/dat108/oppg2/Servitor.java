@@ -5,7 +5,6 @@ public class Servitor extends Thread {
 
     private HamburgerBrett brett;
     private String navn;
-    private Hamburger burger;
 
     public Servitor(HamburgerBrett brett, String navn) {
         this.brett = brett;
@@ -19,17 +18,11 @@ public class Servitor extends Thread {
     @Override
     public void run() {
         while (true) {
-            synchronized (brett) {
-                while (brett.isEmpty()) {
-                    try {
-                        brett.wait();
-                    } catch (InterruptedException e) {
-
-                    }
-                    brett.dequeue();
-                    System.out.println(getNavn() + " plukket opp " + burger.nummer());
-                }
+            try {
+                sleep((long) Math.floor(Math.random() * 5 + 2) * 1000);
+            } catch (InterruptedException e) {
             }
+            brett.serverBurger(this);
         }
     }
 }
