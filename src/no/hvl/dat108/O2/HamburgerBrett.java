@@ -7,14 +7,12 @@ public class HamburgerBrett {
 	private ArrayList<Hamburger> hamburgere;
 	private int capacity;
 	private int burgerNumber;
-	private Object lock;
 	
 	public HamburgerBrett(int capacity) {
 		
 		this.capacity = capacity;
 		hamburgere = new ArrayList<>();
 		burgerNumber = 0;
-		lock = new Object();
 		
 	}
 	
@@ -26,7 +24,7 @@ public class HamburgerBrett {
 	
 	public void addHamburger(Kokk k) {
 		
-		synchronized(lock) {
+		synchronized(this) {
 			
 			if(hamburgere.size() >= capacity) {
 				
@@ -34,7 +32,7 @@ public class HamburgerBrett {
 				
 				try {
 					
-					lock.wait();
+					this.wait();
 					
 				}
 				
@@ -50,7 +48,7 @@ public class HamburgerBrett {
 				
 				hamburgere.add(h);
 				
-				lock.notify();
+				this.notify();
 				
 			}
 			
@@ -60,7 +58,7 @@ public class HamburgerBrett {
 	
 	public void removeHamburger(Servitor s) {
 		
-		synchronized(lock) {
+		synchronized(this) {
 			
 			if(hamburgere.isEmpty()) {
 				
@@ -68,7 +66,7 @@ public class HamburgerBrett {
 				
 				try {
 					
-					lock.wait();
+					this.wait();
 					
 				}
 				
@@ -80,7 +78,7 @@ public class HamburgerBrett {
 				
 				System.out.println("Servert av " + s.getNamn() + ": " + hamburgere.remove(0).getNummer());
 				
-				lock.notify();
+				this.notify();
 				
 			}
 			
