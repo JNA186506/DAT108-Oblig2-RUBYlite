@@ -16,12 +16,6 @@ public class HamburgerBrett {
 		
 	}
 	
-	public int getBurgerNumber() {
-		
-		return burgerNumber;
-		
-	}
-	
 	public void addHamburger(Kokk k) {
 		
 		synchronized(this) {

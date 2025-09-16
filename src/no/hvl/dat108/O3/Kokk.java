@@ -1,4 +1,4 @@
-package no.hvl.dat108.O2;
+package no.hvl.dat108.O3;
 
 public class Kokk extends Thread {
 	

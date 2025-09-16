@@ -2,13 +2,11 @@ package no.hvl.dat108.O2;
 
 public class Servitor extends Thread {
 	
-	private boolean done;
 	private HamburgerBrett brett;
 	private String namn;
 	
 	public Servitor(HamburgerBrett brett, String namn) {
 		
-		done = false;
 		this.brett = brett;
 		this.namn = namn;
 		
@@ -20,16 +18,10 @@ public class Servitor extends Thread {
 		
 	}
 	
-	public void setNamn(String namn) {
-		
-		this.namn = namn;
-		
-	}
-	
 	@Override
 	public void run() {
 		
-		while(!done) {
+		while(true) {
 			
 			try {
 				
@@ -46,12 +38,6 @@ public class Servitor extends Thread {
 			brett.removeHamburger(this);
 			
 		}
-		
-	}
-	
-	public void stopp() {
-		
-		done = true;
 		
 	}
 	
