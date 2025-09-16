@@ -1,25 +1,23 @@
 package no.hvl.dat108.O3;
 
+import java.util.ArrayList;
+
 public class Main {
 	
 	public static void main(String[] args) {
 		
-		int k = 0;
-		int n = 3;
-		int m = 3;
-		int o = 3;
+		HamburgerBrett brett = new HamburgerBrett(5);
 		
-		for(int i = 0; i < n; i++) {
-			
-			for(int j = 0; j < m; j++) {
-				
-				for(int a = 0; a < o; a++) k += 1;
-				
-			}
-			
-		}
+		ArrayList<Kokk> kokkListe = new ArrayList<>();
+		String[] kokker = {"Mitch", "Mitchy", "Mitchey"};
+		for(String k : kokker) kokkListe.add(new Kokk(brett, k));
 		
-		System.out.println(k);
+		ArrayList<Servitor> servitorListe = new ArrayList<>();
+		String[] servitorer = {"Michelle", "Michette", "Michelline"};
+		for(String s : servitorer) servitorListe.add(new Servitor(brett, s));
+		
+		for(Kokk k : kokkListe) k.start();
+		for(Servitor s : servitorListe) s.start();
 		
 	}
 	

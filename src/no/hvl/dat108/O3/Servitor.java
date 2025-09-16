@@ -1,11 +1,11 @@
-package no.hvl.dat108.O2;
+package no.hvl.dat108.O3;
 
-public class Kokk extends Thread {
+public class Servitor extends Thread {
 	
 	private HamburgerBrett brett;
 	private String namn;
 	
-	public Kokk(HamburgerBrett brett, String namn) {
+	public Servitor(HamburgerBrett brett, String namn) {
 		
 		this.brett = brett;
 		this.namn = namn;
@@ -35,7 +35,7 @@ public class Kokk extends Thread {
 				
 			}
 			
-			brett.addHamburger(this);
+			brett.removeHamburger(this);
 			
 		}
 		
