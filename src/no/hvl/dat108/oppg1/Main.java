@@ -1,5 +1,7 @@
 package no.hvl.dat108.oppg1;
 
+import javax.swing.*;
+
 import static java.lang.Thread.sleep;
 
 public class Main {
@@ -8,10 +10,14 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        UtThread t1 = new UtThread();
+        String forsteMelding = JOptionPane.showInputDialog(null, "Skriv inn melding");
+
+        Melding melding = new Melding(forsteMelding);
+
+        UtThread t1 = new UtThread(melding);
         t1.start();
 
-        InnThread t2 = new InnThread();
+        InnThread t2 = new InnThread(melding);
         t2.start();
 
         t1.join();
