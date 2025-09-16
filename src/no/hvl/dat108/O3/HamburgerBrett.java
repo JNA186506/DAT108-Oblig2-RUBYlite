@@ -1,5 +1,7 @@
 package no.hvl.dat108.O3;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -21,7 +23,8 @@ public class HamburgerBrett {
 			
 			Hamburger h = new Hamburger(++burgerNumber);
 			hamburgere.put(h);
-			System.out.println("Laget av " + k.getNamn() + ": " + h.getNummer());
+			System.out.println( k.getNamn() + " lagde burger nummer: " + h.getNummer()
+			+ ", Brettet inneholder: " + this);
 			
 		}
 		
@@ -49,8 +52,19 @@ public class HamburgerBrett {
 			
 		}
 		
-		System.out.println("Servert av " + s.getNamn() + ": " + hb.getNummer());
+		System.out.println(s.getNamn() + " serverte burger nummer: " + hb.getNummer()
+		+ ", Brettet inneholder: " + this);
 		
 	}
-	
+
+	public String toString() {
+		List<Integer> s = new ArrayList<>();
+
+		for (Hamburger burger : hamburgere) {
+			s.add(burger.getNummer());
+		}
+
+		return String.join(", ", s.toString());
+	}
+
 }

@@ -1,6 +1,7 @@
 package no.hvl.dat108.O2;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HamburgerBrett {
 	
@@ -38,7 +39,7 @@ public class HamburgerBrett {
 				
 				Hamburger h = new Hamburger(++burgerNumber);
 				
-				System.out.println("Laget av " + k.getNamn() + ": " + h.getNummer());
+				System.out.println(k.getNamn() + " lagde burger nummer: " + h.getNummer() + ", Brettet inneholder: " + this);
 				
 				hamburgere.add(h);
 				
@@ -70,14 +71,27 @@ public class HamburgerBrett {
 			
 			else {
 				
-				System.out.println("Servert av " + s.getNamn() + ": " + hamburgere.remove(0).getNummer());
+				System.out.println( s.getNamn() + " serverte burger nummer: " + hamburgere.removeFirst().getNummer()
+				 + " Brettet inneholder: " + this);
 				
 				this.notify();
 				
 			}
+
+
 			
 		}
 		
+	}
+
+	public String toString() {
+		List<Integer> s = new ArrayList<>();
+
+		for (Hamburger burger : hamburgere) {
+			s.add(burger.getNummer());
+		}
+
+		return String.join(", ", s.toString());
 	}
 	
 }

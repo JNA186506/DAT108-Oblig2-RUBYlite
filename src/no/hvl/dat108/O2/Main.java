@@ -2,10 +2,6 @@ package no.hvl.dat108.O2;
 
 import java.util.ArrayList;
 
-import no.hvl.dat108.O3.HamburgerBrett;
-import no.hvl.dat108.O3.Kokk;
-import no.hvl.dat108.O3.Servitor;
-
 public class Main {
 	
 	public static void main(String[] args) {

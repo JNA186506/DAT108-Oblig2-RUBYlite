@@ -1,0 +1,54 @@
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision 6eaa29354674ff0372b756dd7887d6556f256b59)
++++ /dev/null	(revision 6eaa29354674ff0372b756dd7887d6556f256b59)
+@@ -1,8 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+-# Editor-based HTTP Client requests
+-/httpRequests/
+-# Datasource local storage ignored files
+-/dataSources/
+-/dataSources.local.xml
+Index: src/no/hvl/dat108/O2/Servitor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package no.hvl.dat108.O2;\n\npublic class Servitor extends Thread {\n\t\n\tprivate boolean done;\n\tprivate HamburgerBrett brett;\n\tprivate String namn;\n\t\n\tpublic Servitor(HamburgerBrett brett, String namn) {\n\t\t\n\t\tdone = false;\n\t\tthis.brett = brett;\n\t\tthis.namn = namn;\n\t\t\n\t}\n\t\n\tpublic String getNamn() {\n\t\t\n\t\treturn namn;\n\t\t\n\t}\n\t\n\tpublic void setNamn(String namn) {\n\t\t\n\t\tthis.namn = namn;\n\t\t\n\t}\n\t\n\t@Override\n\tpublic void run() {\n\t\t\n\t\twhile(!done) {\n\t\t\t\n\t\t\ttry {\n\t\t\t\t\n\t\t\t\tThread.sleep((2 + (int) Math.floor(Math.random() * 5)) * 1000);\n\t\t\t\t\n\t\t\t}\n\t\t\t\n\t\t\tcatch (InterruptedException e) {\n\t\t\t\t\n\t\t\t\te.printStackTrace();\n\t\t\t\t\n\t\t\t}\n\t\t\t\n\t\t\tbrett.removeHamburger(this);\n\t\t\t\n\t\t}\n\t\t\n\t}\n\t\n\tpublic void stopp() {\n\t\t\n\t\tdone = true;\n\t\t\n\t}\n\t\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/no/hvl/dat108/O2/Servitor.java b/src/no/hvl/dat108/O2/Servitor.java
+--- a/src/no/hvl/dat108/O2/Servitor.java	(revision 6eaa29354674ff0372b756dd7887d6556f256b59)
++++ b/src/no/hvl/dat108/O2/Servitor.java	(date 1757962898926)
+@@ -25,7 +25,8 @@
+ 		this.namn = namn;
+ 		
+ 	}
+-	
++
++
+ 	@Override
+ 	public void run() {
+ 		
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"VcsDirectoryMappings\" defaultProject=\"true\" />\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+--- a/.idea/vcs.xml	(revision 6eaa29354674ff0372b756dd7887d6556f256b59)
++++ b/.idea/vcs.xml	(date 1758003009479)
+@@ -1,4 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="VcsDirectoryMappings" defaultProject="true" />
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
+ </project>
+\ No newline at end of file

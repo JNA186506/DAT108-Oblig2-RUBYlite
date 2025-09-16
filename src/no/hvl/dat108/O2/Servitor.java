@@ -17,7 +17,7 @@ public class Servitor extends Thread {
 		return namn;
 		
 	}
-	
+
 	@Override
 	public void run() {
 		
