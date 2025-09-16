@@ -1,55 +1,29 @@
-package no.hvl.dat108.O1;
+package no.hvl.dat108.oppg1;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+
+import static java.lang.Thread.sleep;
 
 public class Main {
-	
-	static String melding;
-	static boolean done;
-	
-	public static void main(String[] args) {
-		
-		melding = "";
-		done = false;
-		
-		Thread t1 = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				
-				while(!done && melding != null) {
-					
-					System.out.println(melding);
-					
-					try {
-						
-						Thread.sleep(3000);
-						
-					}
-					
-					catch (InterruptedException e) {
-						
-						e.printStackTrace();
-						
-					}
-					
-				}
-				
-			}
-			
-		});
-		
-		t1.start();
-		
-		while(!done) {
-			
-			melding = JOptionPane.showInputDialog(null, "Write in a message to print (write 'done' to shut down): ", "Avbryt", JOptionPane.PLAIN_MESSAGE);
-			
-			if(melding == null) done = true;
-			else if(melding.toLowerCase().equals("done")) done = true;
-			
-		}
-		
-	}
-	
+
+    public static boolean fortsett = true;
+
+    public static void main(String[] args) throws InterruptedException {
+
+        String forsteMelding = JOptionPane.showInputDialog(null, "Skriv inn melding");
+
+        Melding melding = new Melding(forsteMelding);
+
+        UtThread t1 = new UtThread(melding);
+        t1.start();
+
+        InnThread t2 = new InnThread(melding);
+        t2.start();
+
+        t1.join();
+        t2.join();
+        System.out.println("Tråder avsluttes...");
+        System.out.println("Main avsluttes.");
+
+    }
 }
